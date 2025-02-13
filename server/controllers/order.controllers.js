@@ -4,7 +4,8 @@ import { ErrorHandler } from '../util.js'
 
 const getOrders = tryCatch(async (_, res) => {
     const orders = await Order.find({})
-    res.status(200).json({ success: true, orders, msg: 'Orders Fetched Successfully' })
+    const flattenedOrders = orders.map(({ user, items, totalAmount, status, paymentMethod, shippingAddress }) => ({ ...user, ...shippingAddress, items, totalAmount, status, paymentMethod }))
+    res.status(200).json({ success: true, orders: flattenedOrders, msg: 'Orders Fetched Successfully' })
 })
 
 const updateOrderStatus = tryCatch(async (req, res, next) => {

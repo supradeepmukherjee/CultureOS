@@ -44,14 +44,6 @@ const OrderSchema = new Schema(
             postalCode: { type: String, required: true },
             country: { type: String, required: true },
         },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-        },
-        updatedAt: {
-            type: Date,
-            default: Date.now,
-        },
     },
     { timestamps: true }
 )
